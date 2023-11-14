@@ -25,6 +25,7 @@ jobs:
           image: 42crunch/pixi:v4.7
           ports:
               - 8080:8090
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -35,6 +36,9 @@ jobs:
       - name: Other
         run: |
           docker ps
+          
+          # Network
+          docker network ls
           docker run --rm alpine/curl -v "${{ env.TARGET_URL }}"
 
       - name: get_photoapi_token
