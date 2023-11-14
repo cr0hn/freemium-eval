@@ -49,11 +49,18 @@ jobs:
             upload-to-code-scanning: true
             log-level: debug
             sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
+            scan-report: 42Crunch_ScanReport_${{ github.run_id }}.json
 
       - name: save-scan-report
-        if: always()
         uses: actions/upload-artifact@v3
         with:
             name: 42Crunch_ScanReport_${{ github.run_id }}
             path: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
+            if-no-files-found: error
+
+      - name: save-scan-report
+        uses: actions/upload-artifact@v3
+        with:
+            name: 42Crunch_ScanReport_${{ github.run_id }}
+            path: 42Crunch_ScanReport_${{ github.run_id }}.json
             if-no-files-found: error
