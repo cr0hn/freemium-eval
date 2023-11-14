@@ -39,7 +39,7 @@ def obtain_token(name: str, password: str, target_url: str, quiet: bool, debug: 
         if response.code != 200:
             raise Exception(f"Received status code {response.status_code}. Retrying...")
         else:
-            return response.json().get('token')
+            return json.loads(response.read()).get('token')
 
     return None
 
