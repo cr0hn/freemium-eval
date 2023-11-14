@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 env:
-    TARGET_URL: "http://127.0.0.1:8090/api"
+    TARGET_URL: "http://127.0.0.1:8080/api"
     USER_NAME: "misty94@demo.mail"
     USER_PASS: "ball"
 
@@ -19,6 +19,12 @@ jobs:
     permissions:
      contents: read # for actions/checkout to fetch code
      security-events: write # for results upload to Github Code Scanning
+
+    services:
+        pixi:
+          image: 42crunch/pixi:v4.7
+          ports:
+              - 8080:8090
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -29,7 +35,7 @@ jobs:
       - name: Other
         run: |
           docker ps
-          docker run --rm alpine/curl -v http://pixiapi:8090/api
+          docker run --rm alpine/curl -v {{ env.TARGET_URL }}
 
       - name: get_photoapi_token
         id: get_photoapi_token
