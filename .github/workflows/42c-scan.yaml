@@ -37,6 +37,7 @@ jobs:
         run: |
           login_response=$(python .42c/scripts/pixi-login.py -u ${{ env.USER_NAME }} -p ${{ env.USER_PASS }})
           echo "PHOTO_API_TOKEN=$login_response" >> $GITHUB_OUTPUT
+
       - name: Scan API for vulnerabilities
         uses: 42Crunch/api-security-scan-action-freemium@main
         with:
@@ -48,6 +49,7 @@ jobs:
             upload-to-code-scanning: false
             log-level: debug
             sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
+
       - name: save-scan-report
         if: always()
         uses: actions/upload-artifact@v3
