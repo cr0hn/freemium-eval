@@ -31,7 +31,7 @@ def obtain_token(name: str, password: str, target_url: str, quiet: bool, debug: 
         try:
             request = urllib.request.Request(url, data=json.dumps(payload).encode('utf-8'), headers=headers)
             response = urllib.request.urlopen(request)
-        except urllib.error.HTTPError as e:
+        except (urllib.error.HTTPError, ConnectionResetError):
             time.sleep(retry_delay)
             retry_count += 1
             continue
