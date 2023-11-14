@@ -1,4 +1,4 @@
-name: "42Crunch API Security Scan"
+name: "42Crunch API Security Scan new"
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches: [ "main" ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main" ]  
+    branches: [ "main" ]
 
 env:
     TARGET_URL: "http://localhost:8090/api"
@@ -47,9 +47,9 @@ jobs:
             log-level: info
             sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
       - name: save-scan-report
-        if: always()        
+        if: always()
         uses: actions/upload-artifact@v3
         with:
             name: 42Crunch_ScanReport_${{ github.run_id }}
             path: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
-            if-no-files-found: error  
+            if-no-files-found: error
