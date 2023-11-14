@@ -27,10 +27,18 @@ jobs:
           upload-to-code-scanning: true
           log-level: info
           sarif-report: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
+          audit-reports-dir: 42Crunch_AuditReport_${{ github.run_id }}
+
       - name: save-audit-report
-        if: always()        
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: 42Crunch_AuditReport_${{ github.run_id }}
           path: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
           if-no-files-found: error
+
+      - name: Upload Audit Reports to Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: 42Crunch_ScanReports
+          path: 42Crunch_AuditReport_${{ github.run_id }}/
