@@ -44,7 +44,7 @@ jobs:
             api-credential: ${{ steps.get_photoapi_token.outputs.PHOTO_API_TOKEN }}
             target-url: ${{ env.TARGET_URL }}
             upload-to-code-scanning: false
-            log-level: info
+            log-level: debug
             sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
       - name: save-scan-report
         if: always()
