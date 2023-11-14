@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 env:
-    TARGET_URL: "http://localhost:8090/api"
+    TARGET_URL: "http://127.0.0.1:8090/api"
     USER_NAME: "misty94@demo.mail"
     USER_PASS: "ball"
 
@@ -25,6 +25,10 @@ jobs:
 
       - name: Start API
         run: docker compose up -d
+
+      - name: Other
+        run: |
+          docker ps
 
       - name: get_photoapi_token
         id: get_photoapi_token
