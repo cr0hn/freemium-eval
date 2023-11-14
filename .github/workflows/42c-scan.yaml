@@ -15,6 +15,20 @@ env:
 
 jobs:
   run_42c_scan:
+    services:
+      db:
+        image: 42crunch/pixi:mongo
+        ports:
+          - "27017:27017"
+        networks:
+          - 42c-network
+      pixi:
+        image: 42crunch/pixi:v4.7
+        ports:
+          - "8090:8090"
+        networks:
+            - 42c-network
+
     runs-on: ubuntu-20.04
     permissions:
      contents: read # for actions/checkout to fetch code
