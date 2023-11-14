@@ -7,7 +7,7 @@ services:
     container_name: pixidb
     ports:
       - "27017:27017"
-      
+
   app:
      image: 42crunch/pixi:v4.7
      container_name: pixiapi
@@ -17,3 +17,8 @@ services:
        - "8090:8090"
      expose:
        - 8090
+
+networks:
+  default:
+    external:
+      name: pixi_default

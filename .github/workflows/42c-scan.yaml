@@ -21,17 +21,22 @@ jobs:
      security-events: write # for results upload to Github Code Scanning
 
     services:
-        pixi:
+        db:
+          image: 42crunch/pixi:mongo
+          options: --network pixi_default --command mongod --quiet
+        app:
           image: 42crunch/pixi:v4.7
-          ports:
-              - 8080:8090
+          options: --network pixi_default
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Start API
-        run: docker compose up -d
+#      - name: Getting network
+#        run: docker network ls
+#
+#      - name: Start API
+#        run: docker compose up -d
 
       - name: Other
         run: |
