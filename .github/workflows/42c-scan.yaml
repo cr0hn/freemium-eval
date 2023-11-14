@@ -35,7 +35,7 @@ jobs:
       - name: Other
         run: |
           docker ps
-          docker run --rm alpine/curl -v {{ env.TARGET_URL }}
+          docker run --rm alpine/curl -v "${{ env.TARGET_URL }}"
 
       - name: get_photoapi_token
         id: get_photoapi_token
