@@ -26,12 +26,6 @@ jobs:
       - name: Start API
         run: docker compose up -d
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
-      - name: Install Python prerequisites
-        run: pip install requests
       - name: get_photoapi_token
         id: get_photoapi_token
         run: |
