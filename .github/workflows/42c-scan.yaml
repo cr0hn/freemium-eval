@@ -44,8 +44,6 @@ jobs:
 
       - name: Exit
         run: |
-#          ping -c 5 pixidb
-#          ping -c 5 app
           ping -c 5 jobs.run_42c_scan.services.app
           ping -c 5 jobs.run_42c_scan.services.pixidb
           curl -v http://app:8090/api
