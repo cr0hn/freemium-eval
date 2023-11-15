@@ -30,6 +30,8 @@ jobs:
             --health-interval 10s
             --health-timeout 5s
             --health-retries 5
+          ports:
+            - 27017:27017
         app:
           image: 42crunch/pixi:v4.7
           options: --link pixidb
@@ -44,15 +46,17 @@ jobs:
         run: |
           ping -c 5 pixidb
           ping -c 5 app
+          ping -c 5 jobs.run_42c_scan.services.app
+          ping -c 5 jobs.run_42c_scan.services.pixidb
+          ping -c 5 jobs.run_42c_scan.services.pixidb:27017
+          ping -c 5 jobs.run_42c_scan.services.app:8090
           curl -v http://app:8090/api
-          exit 0
 
       - name: get_photoapi_token
         id: get_photoapi_token
         run: |
           login_response=$(python scripts/pixi-login.py -u ${{ env.USER_NAME }} -p ${{ env.USER_PASS }} -t ${{ env.TARGET_URL }})
           echo "PHOTO_API_TOKEN=$login_response" >> $GITHUB_OUTPUT
-
 
       - name: Scan API for vulnerabilities
         uses: 42Crunch/api-security-scan-action-freemium@main
