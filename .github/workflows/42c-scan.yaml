@@ -9,7 +9,8 @@ on:
     branches: [ "main" ]
 
 env:
-    TARGET_URL: "http://127.0.0.1:8080/api"
+#    TARGET_URL: "http://127.0.0.1:8080/api"
+    TARGET_URL: "http://pixidb:8090/api"
     USER_NAME: "misty94@demo.mail"
     USER_PASS: "ball"
 
@@ -21,22 +22,15 @@ jobs:
      security-events: write # for results upload to Github Code Scanning
 
     services:
-        db:
+        pixidb:
           image: 42crunch/pixi:mongo
           options: --entrypoint "/usr/bin/mongod"
         app:
           image: 42crunch/pixi:v4.7
-          options: --network db
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
-#      - name: Getting network
-#        run: docker network ls
-#
-#      - name: Start API
-#        run: docker compose up -d
 
       - name: Other
         run: |
