@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 env:
-    TARGET_URL: "http://127.0.0.1:8080/api"
+    TARGET_URL: "http://127.0.0.1:8090/api"
     USER_NAME: "misty94@demo.mail"
     USER_PASS: "ball"
 
