@@ -10,7 +10,7 @@ on:
 
 env:
 #    TARGET_URL: "http://127.0.0.1:8080/api"
-    TARGET_URL: "http://pixidb:8090/api"
+    TARGET_URL: "http://app:8090/api"
     USER_NAME: "misty94@demo.mail"
     USER_PASS: "ball"
 
