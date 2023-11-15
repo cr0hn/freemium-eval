@@ -32,18 +32,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Other
-        run: |
-          docker ps
-          
-          # Network
-          docker network ls
-          docker run --rm alpine/curl -v "${{ env.TARGET_URL }}"
-
       - name: get_photoapi_token
         id: get_photoapi_token
         run: |
-          login_response=$(python scripts/pixi-login.py -u ${{ env.USER_NAME }} -p ${{ env.USER_PASS }})
+          login_response=$(python scripts/pixi-login.py -u ${{ env.USER_NAME }} -p ${{ env.USER_PASS }} -t ${{ env.TARGET_URL }})
           echo "PHOTO_API_TOKEN=$login_response" >> $GITHUB_OUTPUT
 
       - name: Scan API for vulnerabilities
