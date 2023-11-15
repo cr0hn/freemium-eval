@@ -40,18 +40,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: get_photoapi_token
-        id: get_photoapi_token
-        run: |
-          login_response=$(python scripts/pixi-login.py -u ${{ env.USER_NAME }} -p ${{ env.USER_PASS }} -t ${{ env.TARGET_URL }})
-          echo "PHOTO_API_TOKEN=$login_response" >> $GITHUB_OUTPUT
-
       - name: Exit
         run: |
           ping -c 5 pixidb
           ping -c 5 app
           curl -v http://app:8090/api
           exit 0
+
+      - name: get_photoapi_token
+        id: get_photoapi_token
+        run: |
+          login_response=$(python scripts/pixi-login.py -u ${{ env.USER_NAME }} -p ${{ env.USER_PASS }} -t ${{ env.TARGET_URL }})
+          echo "PHOTO_API_TOKEN=$login_response" >> $GITHUB_OUTPUT
+
 
       - name: Scan API for vulnerabilities
         uses: 42Crunch/api-security-scan-action-freemium@main
