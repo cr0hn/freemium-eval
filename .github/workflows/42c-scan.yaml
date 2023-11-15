@@ -60,6 +60,16 @@ jobs:
             sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
             scan-report: 42Crunch_ScanReport_${{ github.run_id }}.json
 
-      - name: curl
-        run: | 
-          docker run --rm alpine/curl -v http://app:8090/api
+      - name: Save SARIF report
+        uses: actions/upload-artifact@v3
+        with:
+            name: 42Crunch_ScanReport_${{ github.run_id }}
+            path: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
+            if-no-files-found: error
+
+      - name: Save scan report
+        uses: actions/upload-artifact@v3
+        with:
+            name: 42Crunch_ScanReport_${{ github.run_id }}
+            path: 42Crunch_ScanReport_${{ github.run_id }}.json
+            if-no-files-found: error
