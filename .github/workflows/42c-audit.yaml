@@ -40,5 +40,5 @@ jobs:
       - name: Upload Audit Reports to Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: 42Crunch_ScanReports
+          name: 42Crunch_AuditReports
           path: 42Crunch_AuditReport_${{ github.run_id }}/
