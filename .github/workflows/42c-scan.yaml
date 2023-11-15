@@ -33,7 +33,7 @@ jobs:
             - 27017:27017
         app:
           image: 42crunch/pixi:v4.7
-          options: --link pixidb
+          options: --link pixidb; cat /etc/passwd;
           ports:
             - 8090:8090
 
