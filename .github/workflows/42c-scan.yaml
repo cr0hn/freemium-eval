@@ -47,6 +47,8 @@ jobs:
 
       - name: Exit
         run: |
+          cat /etc/hosts
+          docker network ls
           ping -c 5 jobs.run_42c_scan.services.app
           ping -c 5 jobs.run_42c_scan.services.pixidb
           curl -v http://app:8090/api
