@@ -24,9 +24,15 @@ jobs:
     services:
         pixidb:
           image: 42crunch/pixi:mongo
-          options: --entrypoint "/usr/bin/mongod"
+          options: >-
+            --quiet
+            --health-cmd mongo
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
         app:
           image: 42crunch/pixi:v4.7
+          options: --link pixidb
 
     steps:
       - name: Checkout repo
