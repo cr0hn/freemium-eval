@@ -23,7 +23,7 @@ jobs:
     services:
         db:
           image: 42crunch/pixi:mongo
-          options: --entrypoint "mongod --quiet"
+          options: --entrypoint "/usr/bin/mongod"
         app:
           image: 42crunch/pixi:v4.7
           options: --network db
