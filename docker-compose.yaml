@@ -17,8 +17,3 @@ services:
        - "8090:8090"
      expose:
        - 8090
-
-networks:
-  default:
-    external:
-      name: pixi_default
