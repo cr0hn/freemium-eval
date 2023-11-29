@@ -28,6 +28,7 @@ jobs:
           log-level: info
           sarif-report: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
           audit-reports-dir: 42Crunch_AuditReport_${{ github.run_id }}
+          export-as-pdf: 42Crunch_AuditReport_${{ github.run_id }}.pdf
 
       - name: save-audit-report
         if: always()
@@ -37,8 +38,15 @@ jobs:
           path: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
           if-no-files-found: error
 
-      - name: Upload Audit Reports to Artifacts
-        uses: actions/upload-artifact@v2
+#      - name: Upload Audit Reports to Artifacts
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: 42Crunch_AuditReports
+#          path: 42Crunch_AuditReport_${{ github.run_id }}/
+
+      - name: Upload PDF report
+        if: always()
+        uses: actions/upload-artifact@v3
         with:
-          name: 42Crunch_AuditReports
-          path: 42Crunch_AuditReport_${{ github.run_id }}/
+          name: 42Crunch_AuditReport_${{ github.run_id }}.pdf
+          path: 42Crunch_AuditReport_${{ github.run_id }}.pdf
