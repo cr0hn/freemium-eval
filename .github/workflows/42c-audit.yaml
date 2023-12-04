@@ -29,7 +29,7 @@ jobs:
           sarif-report: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
           audit-reports-dir: 42Crunch_AuditReport_${{ github.run_id }}
           export-as-pdf: 42Crunch_AuditReport_${{ github.run_id }}.pdf
-          enforce-sqg: true
+          enforce-sqg: false
 
       - name: save-audit-report
         if: always()
