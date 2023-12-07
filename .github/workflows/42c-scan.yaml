@@ -60,6 +60,7 @@ jobs:
             sarif-report: 42Crunch_ScanReport_${{ github.run_id }}.SARIF
             scan-report: 42Crunch_ScanReport_${{ github.run_id }}.json
             export-as-pdf: 42Crunch_ScanReport_${{ github.run_id }}.pdf
+            enforce-sqg: true
 
       - name: Save SARIF report PDF
         uses: actions/upload-artifact@v3
