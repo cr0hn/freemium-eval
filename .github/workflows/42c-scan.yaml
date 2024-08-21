@@ -48,7 +48,7 @@ jobs:
           echo "PHOTO_API_TOKEN=$login_response" >> $GITHUB_OUTPUT
 
       - name: Scan API for vulnerabilities
-        uses: 42Crunch/api-security-scan-action-freemium@main
+        uses: 42Crunch/api-security-scan-action-freemium@v1.4
         with:
             # Upload results to Github Code Scanning
             # Set to false if you don't have Github Advanced Security.
